@@ -5,7 +5,7 @@
 ```
 Your LAN — 192.168.0.0/24, mapped 2026-11-06 10:32
   192.168.0.1      gateway
-  └─ 192.168.0.183   fe:33:db:xx:xx:xx  randomized (privacy MAC)  DarkRX  http,https  (this laptop's enp5s0)  something with a web page
+  └─ 192.168.0.183   fe:33:xx:xx:xx:xx  randomized (privacy MAC)  DarkRX  http,https  (this laptop's enp5s0)  something with a web page
   └─ 192.168.0.200   c8:94:02:xx:xx:xx  unknown  DarkRX  http,https  <- this machine  something with a web page
 ```
 
@@ -29,7 +29,7 @@ This tool did not work first try, and the failures were the best part:
 ## Findings about this LAN
 
 - The router (`192.168.0.1`, `dc:ea:e7:xx:xx:xx`) answers reverse DNS as `devicesetup.net` — ISP branding, which the classifier happily uses as a hint.
-- **This laptop wears masks on both interfaces.** The ethernet MAC `fe:33:db:xx:xx:xx` has the locally-administered bit set — NetworkManager randomizes the wired MAC too, not just wifi. Combined with DHCP renewals observed over one morning (`.183` → `.200` on the same radio), the machine has held at least three identities in a few hours.
+- **This laptop wears masks on both interfaces.** The ethernet MAC `fe:33:xx:xx:xx:xx` has the locally-administered bit set — NetworkManager randomizes the wired MAC too, not just wifi. Combined with DHCP renewals observed over one morning (`.183` → `.200` on the same radio), the machine has held at least three identities in a few hours.
 - That connects directly to project #5's packet captures: the router's periodic poll of ~20+ dead lease addresses (48-second cycle, captured verbatim) is largely a trail of privacy-MAC debris. Devices shedding identities strand leases behind them; the router keeps knocking on graves. Projects #3 (ARP), #5 (sniffing) and #6 (this) tell one story about what MAC randomization does to a home network.
 - Phones come and go: the Samsung (`.242`, randomized MAC `12:e9:9e:xx:xx:xx`, reverse DNS `android-phone`) appeared in early sweeps and was absent from the final map — asleep or gone. A topology snapshot is exactly that: a snapshot.
 
