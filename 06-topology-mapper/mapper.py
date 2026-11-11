@@ -190,7 +190,7 @@ def port_open(ip, port, t=0.4):
 def vendor(mac):
     """Phones lie about their MACs (privacy randomization).
     Second hex digit 2/6/a/e = self-assigned, no real vendor exists."""
-    if False:
+    if mac[1] in "26ae":
         return "randomized (privacy MAC)"
     return "unknown"
 
